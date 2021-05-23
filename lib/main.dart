@@ -1,16 +1,31 @@
+import 'dart:convert';
+import 'dart:io';
+
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttercodigo/contador_cubit/counter/view/counter_page.dart';
 import 'package:fluttercodigo/contador_cubit/counter_observer.dart';
+import 'package:fluttercodigo/dart_code/isolet.dart';
 import 'package:fluttercodigo/sqflite/screen_ui.dart';
 import 'package:fluttercodigo/widgets/dialogos.dart';
 import 'package:fluttercodigo/widgets/distribucion.dart';
+import 'package:fluttercodigo/widgets/gestos_en_pantalla.dart';
 import 'package:fluttercodigo/widgets/imagen.dart';
 import 'package:fluttercodigo/widgets/preferences.dart';
-import 'package:fluttercodigo/widgets/web_conexion_rest_api.dart';
+import 'dart_code/web_conexion_rest_api.dart';
 
 import 'Contador_BLoC/Screen_BLoC.dart';
 
 import 'package:bloc/bloc.dart';
+
+import 'classes/clase_json_map_objeto.dart';
+import 'classes/herencia y polimorfismo.dart';
+import 'dart_code/crear_archivo_interno.dart';
+
+import 'package:http/http.dart' as http;
+
+import 'dart_code/http_request_JSON.dart';
+
 
 void main() {
   runApp(MyApp());
@@ -145,13 +160,54 @@ class _MyHomePageState extends State<MyHomePage> {
                     },
                   ),
                   ElevatedButton(
-                    child: Text("hola"),
+                    child: Text("gestos"),
                     onPressed: () {
-                      print("---inicio---");
-
-                      print("hola GitHub");
-
-                      print("---final---");
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => gestos_en_pantalla(),
+                        ),
+                      );
+                    },
+                  ),
+                  ElevatedButton(
+                    child: Text("crear y guardar arcivos"),
+                    onPressed: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => FlutterDemo(storage: CounterStorage()),
+                        ),
+                      );
+                    },
+                  ),
+                  ElevatedButton(
+                    child: Text("Page_isolate"),
+                    onPressed: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => Page_isolate(),
+                        ),
+                      );
+                    },
+                  ),
+                  ElevatedButton(
+                    child: Text("http request JSON"),
+                    onPressed: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => http_request_json(),
+                        ),
+                      );
+                    },
+                  ),
+                  ElevatedButton(
+                    child: Text("x"),
+                    onPressed: () {
+                      print("");
+                      print("");
                     },
                   ),
                 ]),
@@ -164,7 +220,10 @@ class _MyHomePageState extends State<MyHomePage> {
   }
 
 
+
+
 }
+
 
 // añadir permisos en el AndroidManifest.xml que esta en la carpeta res o afuera de ella     <uses-permission android:name="android.permission.INTERNET"/>
 // cambiar el "minSdkVersion 16" a 21 o 23 en build.gradle  21 = android 5.  23 = android 6
@@ -189,6 +248,7 @@ class _MyHomePageState extends State<MyHomePage> {
   #   webview_flutter: ^0.3.22+1
   rxdart: ^0.27.0
   http: ^0.12.0+2
+  flutter_isolate: ^2.0.0
 */
 
 // errores
@@ -203,6 +263,7 @@ Turn off Null Safety
 pubspec.yam
 environment:
   sdk: ">=2.11.0 <3.0.0"
+//// @dart=2.9
 https://stackoverflow.com/questions/65302065/turn-off-null-safety-for-previous-flutter-project
 */
 

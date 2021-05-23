@@ -11,13 +11,11 @@ class Screen_BLoC extends StatefulWidget {
 class _Screen_BLoCState extends State<Screen_BLoC> {
   final CounterBloc _counterBloc = CounterBloc();
 
-
   @override
   void dispose() {
     _counterBloc.dispose();
     super.dispose();
   }
-
 
   @override
   Widget build(BuildContext context) {

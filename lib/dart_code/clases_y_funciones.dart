@@ -1,6 +1,4 @@
 
-
-
 class TestClass {
   void disp() {
     print("Hello World");
@@ -44,3 +42,31 @@ void funciones(){
   
 }
 
+
+class Persona {
+  String name;
+
+  //getter method
+  String get per_name {
+    return name;
+  }
+  //setter method
+  void set per_name(String name) {
+    this.name = name;
+  }
+  //function definition
+  void result() {
+    print(name);
+  }
+}
+
+void crear_instancia() {
+  Persona persona_1 = new Persona();
+  persona_1.name = "gus";
+  persona_1.result(); //function call
+}
+
+
+void alggo(){
+
+}

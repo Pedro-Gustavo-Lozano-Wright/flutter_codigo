@@ -1,3 +1,4 @@
+import 'dart:convert';
 import 'dart:math';
 
 import 'package:flutter/material.dart';
@@ -27,7 +28,6 @@ void final_y_const(){
   //Las variables constantes son implícitamente finales
 
 }
-
 
 void variables_numericas(){
   var y = 1.1;
@@ -86,6 +86,13 @@ void variables_numericas(){
   var generatedList = List.generate(10, (number) => number * Random().nextInt(50));
   print(generatedList);
   //10 números multiplicados por un número aleatorio entre 0 y 50
+
+  int minimo = [1, 2, 3, 4, 5].reduce(min); //returns 1
+  int maximo = [1, 2, 3, 4, 5].reduce(max); //returns 5
+
+
+  const double pi = 3.1415926535897932;
+
 }
 
 void variables_srings(){
@@ -113,7 +120,9 @@ void variables_srings(){
   if('texto'.endsWith('o')){
     print("termina con una o");
   }
-  int inicio_de_e = 'texto'.indexOf('e');
+
+  int la_primera_e = 'texto'.indexOf('e');
+  var la_ultima_a = 'Dartisans'.lastIndexOf('a');
 
   var string_1 = "Hello world!";
   List split_list = string_1.split(" ");
@@ -125,7 +134,7 @@ void variables_srings(){
   // ['a', 'a']
 
   var string_3 = 'Pub';
-  string_3.split('');
+  string_3.split('');// ['P', 'u', 'b']
 
   var variable = 'Text';
   print('Dart - $variable ');
@@ -162,13 +171,20 @@ void variables_srings(){
   print('Hola mundo dart'.replaceFirst(RegExp(r'o'), '-'));
   print('Hola mundo dart'.replaceFirst(RegExp(r'o'), '-', 5));
   // String replaceFirst(Pattern from, String to, [int startIndex = 0]);
+  print('Hola munda dart'.replaceRange(5, 10, '-', ));
 
   var string_dart = 'dartlang';
   string_dart.substring(1);    // 'artlang'
   string_dart.substring(1, 4); // 'art'
 
   var str_con_espacios = ' Dart  ';
+
   var str_sin_espacios = str_con_espacios.trim();
+
+  StringBuffer buffer = StringBuffer();
+  buffer.write("texto 1");
+  buffer.writeAll(["texto 2", "texto 3"]);
+
 
 
 
@@ -176,6 +192,17 @@ void variables_srings(){
 }
 
 void variables_listas(){
+
+
+  List growableList = [1, 2];
+  print(growableList);
+  growableList.length = 0;//borrar todito
+  print(growableList);
+  growableList.add(499); //añadir
+  print(growableList);
+  growableList[0] = 87;//asignar
+  print(growableList);
+
 
   List lista_1 = [];
   lista_1
@@ -236,10 +263,26 @@ void variables_mapas(){
 
   Map<int,String> nullMap;
 //or
-
   Map<String,String> ingles_espanol_Map = {"red": "rojo","blue":"azul","pink":"roza"};
+  Map<int,String> rankin_de_jugadores = {1: "ronaldo",2:"mesi",3:"chicharito"};
+  Map<String,int> nombre_y_edad = {"gus": 25,"iban":35,"luis": 30};
+  rankin_de_jugadores.addAll({
+    4:"fulano",
+    5:"de tal"
+  });
+  print(ingles_espanol_Map["blue"]);
   var espanol = ingles_espanol_Map["red"];
   print(espanol);
+  print(ingles_espanol_Map["blue"]);
+
+  nombre_y_edad.update("gus", (value) => 24);
+  nombre_y_edad.remove("gus");
+  nombre_y_edad.forEach((key, value) {
+    print(key + " " + value.toString());
+  });
+  
+
+
 
 
   Map<String,String> frances_espanol_Map= {};
@@ -258,6 +301,24 @@ void variables_mapas(){
 
 }
 
+void json_map_objeto(){
+
+  String str_json =
+    '''
+    {"name": "John Smith",
+    "email": "john@example.com"}
+    ''';
+
+  Map<String, dynamic> user = jsonDecode(str_json);
+
+  print('nombre: ${user['name']}!');
+  print('correo: ${user['email']}.');
+
+
+
+
+}
+
 void variables_set(){
 
   //no tienen una posición definida.
@@ -271,4 +332,33 @@ void variables_set(){
 
 }
 
+void variables_tiempo(){
 
+  DateTime now = DateTime.now();
+  DateTime dia_1 = DateTime.parse("1969-07-20 20:18:00");  // 8:18pm
+  DateTime dia_2 = DateTime(1989, 11, 9);
+  print(now.toString());
+  print("---");
+  print(dia_1.toString());
+  print("---");
+  print(dia_2.toString());
+
+  if(dia_2.isAfter(dia_1)){
+    print("dia_2 es despues de dia_1");
+  }
+  if(dia_2.isBefore(dia_1)){
+    print("dia_2 es antes de dia_1");
+  }
+
+  DateTime today = DateTime.now();
+  DateTime una_hora_en_el_futuro = today.add(Duration(hours: 1));
+  print("1 horas " + una_hora_en_el_futuro.toString());
+
+  Duration difference = dia_2.difference(dia_1);
+  print("diferencia " + difference.inDays.toString());
+
+  var tiempo_de_100_minutos = const Duration(hours: 1, minutes: 40, seconds: 2);
+  assert(tiempo_de_100_minutos.inMinutes == 100);
+
+
+}

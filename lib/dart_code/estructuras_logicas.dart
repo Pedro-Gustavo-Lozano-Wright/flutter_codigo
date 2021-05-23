@@ -129,6 +129,7 @@ void siclos(){
   ^= 	// a = a ^ b
   |= 	// a = a | b
 
+  == !=   //equality
   !expr 	// invierte la expresion, de falsa a true, y viceversa.
   !! 		// or logico
   && 		// and logico

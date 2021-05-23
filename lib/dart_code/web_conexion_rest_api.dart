@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'dart:async';
 import 'dart:convert';
@@ -29,13 +31,30 @@ class _web_conexionState extends State<web_conexion> {
               ),
               OutlineButton(
                 onPressed: () {
+
+                  HttpServer.bind('127.0.0.1', 4444)
+                      .then((server) => print('${server.isBroadcast}'))
+                      .catchError(print);
                 },
-                child: Text(""),
+                child: Text("HttpServer 127.0.0.1"),
               ),
               OutlineButton(
                 onPressed: () {
+
+                  //https://api.flutter.dev/flutter/dart-io/dart-io-library.html
+
+                  runZoned(() async {
+                    var server = await HttpServer.bind('127.0.0.1', 4040);
+                    server.listen((HttpRequest req) async {
+                      if (req.uri.path == '/ws') {
+                        var socket = await WebSocketTransformer.upgrade(req);
+                        print(socket);
+                      }
+                    });
+                  }, onError: (e) => print("An error occurred."));
+
                 },
-                child: Text(""),
+                child: Text("HttpServer socket"),
               ),
               OutlineButton(
                 onPressed: () {
@@ -61,6 +80,8 @@ class _web_conexionState extends State<web_conexion> {
       ),
     );
   }
+
+
 
   Future<void> message1() async {
     print('Esperando...');

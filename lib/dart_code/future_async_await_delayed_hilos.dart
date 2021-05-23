@@ -1,4 +1,7 @@
 
+import 'dart:convert';
+import 'dart:io';
+
 void stream_canal_de_datos(){
 
   Stream<int> countStream(int max) async* {
@@ -20,6 +23,18 @@ void stream_canal_de_datos(){
     int sum = await sumStream(stream);
     print(sum); // 45
   }
+
+
+
+  Stream<List<int>> stream = File('quotes.txt').openRead();
+  stream.transform(utf8.decoder).forEach(print);
+
+
+  HttpServer.bind('127.0.0.1', 4444)
+      .then((server) => print('${server.isBroadcast}'))
+      .catchError(print);
+
+
 }
 
 void hilo_se_ejecuta_paralelamente(){
