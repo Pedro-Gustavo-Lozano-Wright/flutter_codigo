@@ -15,18 +15,18 @@ import 'package:flutter/material.dart';
 
 void final_y_const(){
 
-  // el final jamas cambiara,
+  //const DateTime now = DateTime.now();//error
+  final DateTime now = DateTime.now();
+  //Las variables final se les asigna su valor cuando
+  //inicia la apliccacion o el archivo donde se le llama a esa variable
+
+  // Las variables const jamas cambiara,
   // sera lo que exactamente declare el programador,
   // no importa si se resetea la aplicacion,o se borran los datos
 
+  const String name = 'Bobby';
 
-  final name = 'Bob'; // Without a type annotation
-  final String nickname = 'Bobby';
-
-  //No se puede definir const dentro de una clase
-  //Pero puedes en una función
   //Las variables constantes son implícitamente finales
-
 }
 
 void variables_numericas(){
@@ -346,6 +346,7 @@ void variables_tiempo(){
   if(dia_2.isAfter(dia_1)){
     print("dia_2 es despues de dia_1");
   }
+
   if(dia_2.isBefore(dia_1)){
     print("dia_2 es antes de dia_1");
   }

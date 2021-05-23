@@ -13,6 +13,14 @@ class web_conexion extends StatefulWidget {
 class _web_conexionState extends State<web_conexion> {
   String text_info = "";
 
+
+  var uri = Uri(
+      scheme: 'https',
+      host: 'example.org',
+      path: '/foo/bar',
+      fragment: 'frag');
+
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
